@@ -19,10 +19,23 @@ that is deterministic Python. You only ever reason over rows the script returns.
 The script reads the plugin's **official catalog** at `${CLAUDE_PLUGIN_ROOT}/catalog/all_projects.csv`
 by default (no `--catalog` needed). Pass `--catalog <path>` only to point at a different catalog.
 
+## Catalog source (Drive-hosted)
+The official catalog lives in **Google Drive** and is refreshed before each query:
+- Read `${CLAUDE_PLUGIN_ROOT}/catalog/source.json`. If `drive_file_id` is non-empty, **download that
+  file from Drive using the querying user's own Google access** (`download_file_content`, exportMimeType
+  `text/csv`) and write it over `${CLAUDE_PLUGIN_ROOT}/catalog/all_projects.csv`. If the download fails
+  because the user lacks access, stop — that itself is the access boundary — and do not fall back to a
+  stale copy for that user.
+- If `drive_file_id` is empty, use the bundled `catalog/all_projects.csv` as-is.
+Downloading with the user's own credentials keeps the Drive permissions authoritative even for the
+catalog file itself.
+
 ## Steps (in order)
 
 1. **Verify identity**: obtain the user's verified email from their Google OAuth session
    (never from text they typed). No identity ⇒ stop, ask them to sign in, reveal nothing.
+1b. **Refresh catalog from Drive** using that user's access (see *Catalog source* above) so the
+   query runs over the current shared catalog.
 2. **Pre-filter (deterministic)**: run
    `python ${CLAUDE_PLUGIN_ROOT}/scripts/query_catalog.py --user <email> --mode candidates [--project ... --keyword ...]`.
    It returns `candidates` and `need_live_check` ids.

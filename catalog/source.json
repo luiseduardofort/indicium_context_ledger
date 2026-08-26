@@ -1,0 +1,5 @@
+{
+  "drive_file_id": "",
+  "drive_file_name": "all_projects.csv",
+  "note": "Official catalog hosted in Google Drive. Set drive_file_id to the Drive file ID of all_projects.csv (shared to the team/domain). The context-query skill downloads this file — using the querying user's own Drive access — to catalog/all_projects.csv before running query_catalog.py. If drive_file_id is empty, the bundled catalog/all_projects.csv is used as-is."
+}
