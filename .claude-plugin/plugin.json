@@ -1,0 +1,6 @@
+{
+  "name": "client-context-ledger",
+  "description": "Preserve and retrieve the evolving context of client projects. Access mirrors each user's Google Drive permissions and is enforced by deterministic scripts, never the LLM. Agents interpret, scripts decide.",
+  "version": "0.1.0",
+  "author": { "name": "Indicium" }
+}

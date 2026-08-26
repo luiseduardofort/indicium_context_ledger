@@ -1,0 +1,21 @@
+# Secrets — never commit
+.env
+.env.*
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# NOTE: catalog/ IS intentionally tracked — it is the plugin's official runtime
+# catalog that the query skill reads. It contains project metadata (not document
+# bodies). Keep this repo PRIVATE.

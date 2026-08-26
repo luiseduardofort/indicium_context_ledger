@@ -1,0 +1,11 @@
+{
+  "name": "indicium",
+  "owner": { "name": "Indicium" },
+  "plugins": [
+    {
+      "name": "client-context-ledger",
+      "source": ".",
+      "description": "Client Context Ledger — agents (structuring), skills (ingest/query/refresh), deterministic scripts (facts, access gate, catalog I/O), and the official runtime catalog under catalog/."
+    }
+  ]
+}
