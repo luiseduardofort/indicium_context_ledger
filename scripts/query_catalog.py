@@ -54,7 +54,10 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--catalog", default=None,
                     help="catalog CSV path (default: <plugin_root>/catalog/all_projects.csv)")
-    ap.add_argument("--user", required=True, help="VERIFIED user email (from OAuth)")
+    ap.add_argument("--user", default="session-user@local",
+                    help="querying user email; only used for the stored-ACL pre-filter. In "
+                         "--acl-nonauthoritative mode (default for Drive) the live per-user Drive "
+                         "check is the gate, so a real email is not required here.")
     ap.add_argument("--groups", default="", help="comma-separated group ids the user belongs to")
     ap.add_argument("--mode", choices=["candidates", "final"], default="final")
     ap.add_argument("--live-ok-ids", default="", help="comma-separated artifact_ids confirmed live-accessible")
